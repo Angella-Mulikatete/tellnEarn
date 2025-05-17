@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useToast } from "../hooks/use-toast";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
@@ -49,7 +49,7 @@ export default function FeedbackForm({ isOpen, onClose, campaignId, rewardAmount
 
   const { writeContractAsync } = useWriteContract();
 
-  const fetchClaimStatus = async () => {
+  const fetchClaimStatus = useCallback(async () => {
     try {
       const response = await fetch(`/api/verify-signature?userAddress=${address}&campaignId=${campaignId}`);
       const data = await response.json();
@@ -63,7 +63,7 @@ export default function FeedbackForm({ isOpen, onClose, campaignId, rewardAmount
       console.error("Error checking claim status:", error);
       setHasClaimed(false);
     }
-  };
+  }, [address, campaignId]); // Dependencies for useCallback
 
   useEffect(() => {
     if (isOpen && address) {
