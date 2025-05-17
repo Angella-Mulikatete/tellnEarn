@@ -2,7 +2,6 @@
 // /* eslint-disable @typescript-eslint/no-unused-vars */
 // import { encodeFunctionData, parseEther } from "viem";
 // import { useAccount, usePublicClient, useWalletClient } from "wagmi";
-// import {abi} from "../app/constants/abi.json";
 // import { readContract,writeContract,waitForTransactionReceipt } from '@wagmi/core'
 // import { config } from "../app/constants/config";
 
@@ -83,9 +82,10 @@
 
 
 
-import {abi} from "../app/constants/abi.json";
+import abi from "../app/constants/abi.json";
 import { config } from "../app/constants/config";
 import { readContract } from '@wagmi/core'
+import { Abi } from 'viem';
 
 const CONTRACT_ADDRESS = "0xCA0d2E3f0504Cdce1cd323ACD8c1bEA1843Ec9fA"; // Replace with your deployed contract address
 
@@ -95,7 +95,7 @@ export const useContractInteractions = () => {
   const getCampaignCount = async () => {
     const count = await readContract(config,{
       address: CONTRACT_ADDRESS,
-      abi,
+      abi: abi.abi as Abi,
       functionName: "getCampaignCount",
       args: [],
     });
@@ -105,7 +105,7 @@ export const useContractInteractions = () => {
   const getCampaign = async (id: number) => {
     const campaign = await readContract(config,{
       address: CONTRACT_ADDRESS,
-      abi,
+      abi: abi.abi as Abi,
       functionName: "getCampaign",
       args: [BigInt(id)],
     });

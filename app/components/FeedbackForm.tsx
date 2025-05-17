@@ -69,7 +69,7 @@ export default function FeedbackForm({ isOpen, onClose, campaignId, rewardAmount
     if (isOpen && address) {
       fetchClaimStatus();
     }
-  }, [isOpen, address]);
+  }, [isOpen, address, fetchClaimStatus]); // Ensure fetchClaimStatus is in dependencies
 
   const handleStarClick = (value: number) => {
     setRating(value);
