@@ -82,7 +82,7 @@
 
 
 
-import abi from "../app/constants/abi.json";
+import contractAbi from "../app/constants/abi.json";
 import { config } from "../app/constants/config";
 import { readContract } from '@wagmi/core'
 import { Abi } from 'viem';
@@ -95,7 +95,7 @@ export const useContractInteractions = () => {
   const getCampaignCount = async () => {
     const count = await readContract(config,{
       address: CONTRACT_ADDRESS,
-      abi: abi.abi as Abi,
+      abi: contractAbi.abi as Abi,
       functionName: "getCampaignCount",
       args: [],
     });
@@ -105,7 +105,7 @@ export const useContractInteractions = () => {
   const getCampaign = async (id: number) => {
     const campaign = await readContract(config,{
       address: CONTRACT_ADDRESS,
-      abi: abi.abi as Abi,
+      abi: contractAbi.abi as Abi,
       functionName: "getCampaign",
       args: [BigInt(id)],
     });
