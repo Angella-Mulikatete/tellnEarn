@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
@@ -32,6 +33,7 @@ function useChart() {
   return context
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
@@ -40,6 +42,7 @@ const ChartContainer = React.forwardRef<
       typeof RechartsPrimitive.ResponsiveContainer
     >["children"]
   }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ id, className, children, config, ...props }, ref) => {
   const uniqueId = React.useId()
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`
