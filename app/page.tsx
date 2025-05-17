@@ -16,10 +16,10 @@ import { Award, FileText, Star, TrendingUp, Upload, Users } from "lucide-react";
 import Navbar from "./components/Navbar";
 // import { CampaignCard } from "./components/CampaignCard";
  import { useContractInteractions } from "../lib/web3";
-import { 
-  //SignInButton, 
-  useProfile 
-} from '@farcaster/auth-kit'; 
+import {
+  //SignInButton,
+  useProfile
+} from '@farcaster/auth-kit';
 import CreateCampaignForm from "./components/CreateCampaign";
 
 
@@ -29,8 +29,8 @@ export default function App() {
      const { getAllCampaigns } = useContractInteractions();
   const [campaigns, setCampaigns] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const { 
-   // isAuthenticated, 
+  const {
+   // isAuthenticated,
     profile } = useProfile();
 
 
@@ -60,7 +60,7 @@ export default function App() {
   { date: "May 8", feedbacks: 28, rewards: 56 },
   ];
 
- 
+
 
   useEffect(() => {
     const load = async () => {
@@ -72,7 +72,7 @@ export default function App() {
       }
     };
     load();
-  }, []);
+  }, [getAllCampaigns]);
 
   if (loading) {
     return <div>Loading campaigns...</div>;
@@ -139,12 +139,12 @@ export default function App() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center">
-          <Image 
-            src="/assets/images/flow.png" 
+          <Image
+            src="/assets/images/flow.png"
             alt="TellnEarn Logo"
             className="h-20 w-auto animate-pulse"
             height = {100}
-            width = {100} 
+            width = {100}
           />
           <p className="text-tellnearn-yellow mt-4 text-lg">Loading TellnEarn...</p>
         </div>
@@ -157,8 +157,8 @@ export default function App() {
   //   return (
   //     <div className="min-h-screen flex flex-col items-center justify-center bg-background gap-8 p-4">
   //       <div className="text-center space-y-4 max-w-2xl">
-  //         <Image 
-  //           src="/assets/images/flow.png" 
+  //         <Image
+  //           src="/assets/images/flow.png"
   //           alt="TellnEarn Logo"
   //           className="h-32 w-auto mx-auto mb-6"
   //           height={150}
@@ -180,7 +180,7 @@ export default function App() {
   // }
 
   return (
-    
+
     <div className="container px-4 sm:px-6 lg:px-8 mx-auto pt-24 pb-16">
       <Navbar username={profile?.username}/>
     <div className="flex flex-col md:flex-row items-start justify-between mb-8 gap-4">
@@ -259,7 +259,7 @@ export default function App() {
       ) : (
         <p>No campaigns available yet.</p>
       )}
-     
+
       </div>
     </div>
 
